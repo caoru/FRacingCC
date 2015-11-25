@@ -7,11 +7,13 @@
 # Precompiled Headers
 *.gch
 *.pch
+.deps
 
 # Compiled Dynamic libraries
 *.so
 *.dylib
 *.dll
+.libs
 
 # Fortran module files
 *.mod
@@ -26,3 +28,28 @@
 *.exe
 *.out
 *.app
+fracing
+
+# http://www.gnu.org/software/automake
+
+Makefile
+#Makefile.in
+config.log
+config.h
+config.status
+libtool
+
+# http://www.gnu.org/software/autoconf
+
+/autom4te.cache
+/autoscan.log
+/autoscan-*.log
+/aclocal.m4
+/compile
+/config.h.in
+/configure
+/configure.scan
+/depcomp
+/install-sh
+/missing
+/stamp-h1
