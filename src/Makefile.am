@@ -10,6 +10,8 @@
 
 bin_PROGRAMS = fracing
 fracing_SOURCES = main.cpp
-fracing_CPPFLAGS = -I$(top_srcdir)/lib/fb
-fracing_LDADD = $(builddir)/../lib/fb/libfb.la
+fracing_CPPFLAGS = -I$(top_srcdir)/lib/configuration
+fracing_CPPFLAGS += -I$(top_srcdir)/lib/framebuffer
+fracing_LDADD = $(builddir)/../lib/configuration/libfrconfiguration.la
+fracing_LDADD += $(builddir)/../lib/framebuffer/libfrframebuffer.la
 

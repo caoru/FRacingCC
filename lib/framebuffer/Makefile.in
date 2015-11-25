@@ -88,7 +88,7 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
-subdir = lib/fb
+subdir = lib/framebuffer
 DIST_COMMON = $(srcdir)/Makefile.in $(srcdir)/Makefile.am \
 	$(top_srcdir)/depcomp
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
@@ -128,9 +128,9 @@ am__uninstall_files_from_dir = { \
   }
 am__installdirs = "$(DESTDIR)$(libdir)"
 LTLIBRARIES = $(lib_LTLIBRARIES)
-libfb_la_LIBADD =
-am_libfb_la_OBJECTS = FrameBuffer.lo
-libfb_la_OBJECTS = $(am_libfb_la_OBJECTS)
+libfrframebuffer_la_LIBADD =
+am_libfrframebuffer_la_OBJECTS = FrameBuffer.lo
+libfrframebuffer_la_OBJECTS = $(am_libfrframebuffer_la_OBJECTS)
 AM_V_lt = $(am__v_lt_@AM_V@)
 am__v_lt_ = $(am__v_lt_@AM_DEFAULT_V@)
 am__v_lt_0 = --silent
@@ -169,8 +169,8 @@ AM_V_CXXLD = $(am__v_CXXLD_@AM_V@)
 am__v_CXXLD_ = $(am__v_CXXLD_@AM_DEFAULT_V@)
 am__v_CXXLD_0 = @echo "  CXXLD   " $@;
 am__v_CXXLD_1 = 
-SOURCES = $(libfb_la_SOURCES)
-DIST_SOURCES = $(libfb_la_SOURCES)
+SOURCES = $(libfrframebuffer_la_SOURCES)
+DIST_SOURCES = $(libfrframebuffer_la_SOURCES)
 am__can_run_installinfo = \
   case $$AM_UPDATE_INFO_DIR in \
     n|no|NO) false;; \
@@ -315,8 +315,8 @@ target_alias = @target_alias@
 top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
-lib_LTLIBRARIES = libfb.la
-libfb_la_SOURCES = FrameBuffer.cpp
+lib_LTLIBRARIES = libfrframebuffer.la
+libfrframebuffer_la_SOURCES = FrameBuffer.cpp
 all: all-am
 
 .SUFFIXES:
@@ -330,9 +330,9 @@ $(srcdir)/Makefile.in:  $(srcdir)/Makefile.am  $(am__configure_deps)
 	      exit 1;; \
 	  esac; \
 	done; \
-	echo ' cd $(top_srcdir) && $(AUTOMAKE) --gnu lib/fb/Makefile'; \
+	echo ' cd $(top_srcdir) && $(AUTOMAKE) --gnu lib/framebuffer/Makefile'; \
 	$(am__cd) $(top_srcdir) && \
-	  $(AUTOMAKE) --gnu lib/fb/Makefile
+	  $(AUTOMAKE) --gnu lib/framebuffer/Makefile
 .PRECIOUS: Makefile
 Makefile: $(srcdir)/Makefile.in $(top_builddir)/config.status
 	@case '$?' in \
@@ -387,8 +387,8 @@ clean-libLTLIBRARIES:
 	  rm -f $${locs}; \
 	}
 
-libfb.la: $(libfb_la_OBJECTS) $(libfb_la_DEPENDENCIES) $(EXTRA_libfb_la_DEPENDENCIES) 
-	$(AM_V_CXXLD)$(CXXLINK) -rpath $(libdir) $(libfb_la_OBJECTS) $(libfb_la_LIBADD) $(LIBS)
+libfrframebuffer.la: $(libfrframebuffer_la_OBJECTS) $(libfrframebuffer_la_DEPENDENCIES) $(EXTRA_libfrframebuffer_la_DEPENDENCIES) 
+	$(AM_V_CXXLD)$(CXXLINK) -rpath $(libdir) $(libfrframebuffer_la_OBJECTS) $(libfrframebuffer_la_LIBADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)

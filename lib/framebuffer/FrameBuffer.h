@@ -1,7 +1,7 @@
 #ifndef _FRAMEBUFFER_H_
 #define _FRAMEBUFFER_H_
 /*
- *  FRacing/lib/fb/FrameBuffer.h
+ *  FRacing/lib/framebuffer/FrameBuffer.h
  *
  *  Copyright (C) 2015 Ikhyun Kim.
  *
@@ -12,11 +12,16 @@
  * Frame buffer library interface definitions.
  */
 
+#include <string>
+
 class FrameBuffer
 {
 public:
 	FrameBuffer(void);
 	~FrameBuffer(void);
+
+private:
+	std::string fbdevice_;
 };
 
 #endif /* _FRAMEBUFFER_H_ */

@@ -1,5 +1,5 @@
 /*
- *  FRacing/lib/fb/FrameBuffer.cpp
+ *  FRacing/lib/framebuffer/FrameBuffer.cpp
  *
  *  Copyright (C) 2015 Ikhyun Kim.
  *

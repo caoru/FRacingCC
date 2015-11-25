@@ -1,5 +1,5 @@
 #
-#  FRacing/lib/Makefile.am
+#  FRacing/lib/configuration/Makefile.am
 #
 #  Copyright (C) 2015 Ikhyun Kim.
 #
@@ -8,5 +8,6 @@
 #
 #
 
-SUBDIRS		= configuration framebuffer
+lib_LTLIBRARIES = libfrconfiguration.la
+libfrconfiguration_la_SOURCES = Configuration.cpp
 

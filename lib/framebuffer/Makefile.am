@@ -8,6 +8,6 @@
 #
 #
 
-lib_LTLIBRARIES = libfb.la
-libfb_la_SOURCES = FrameBuffer.cpp
+lib_LTLIBRARIES = libfrframebuffer.la
+libfrframebuffer_la_SOURCES = FrameBuffer.cpp
 
