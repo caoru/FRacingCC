@@ -78,9 +78,8 @@ bool Configuration::parse(void)
 				std::getline(iss, key, '=');
 				std::getline(iss, value, '=');
 
-				add(section_name, key, value);
+				add(section_name, frstring::trim(key), frstring::trim(value));
 			}
-			//std::cout << "<" << data << ">" << std::endl;
 		}
 
 		ifs.close();
@@ -103,7 +102,7 @@ void Configuration::add(std::string section_name, std::string key, std::string v
 		if (section_name.compare((*iter).section_name()) == 0)
 		{
 			(*iter).add(key, value);
-			break;
+			return;
 		}
 		iter++;
 	}
@@ -120,10 +119,15 @@ void Configuration::dump(void)
 {
 	std::list<ConfigSection>::iterator iter = sections_.begin();
 
+	std::cout << "====================================================" << std::endl;
+	std::cout << "Section count is " << sections_.size() << std::endl;
+
 	while (iter != sections_.end())
 	{
 		(*iter).dump();
 		iter++;
 	}
+
+	std::cout << "====================================================" << std::endl;
 }
 

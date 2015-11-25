@@ -63,7 +63,9 @@ void ConfigSection::dump(void)
 {
 	std::list<ConfigItem>::iterator iter = items_.begin();
 
+	std::cout << "====================================================" << std::endl;
 	std::cout << "Section: " << section_name_ << std::endl;
+	std::cout << "Item count is " << items_.size() << std::endl;
 
 	while (iter != items_.end())
 	{
