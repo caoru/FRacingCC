@@ -9,3 +9,11 @@ FRacing is GPS Lap Timer and GPS Data Logger using Raspberry Pi.
 * built-in 3-axis accelerometer sensor to plot G-force distribution. 
 * built-in 3-axis gyroscope sensor to plot lean angle of motocycle distribution.
 
+## Hardware
+
+* Raspberry Pi 2 
+* 3.5inch RPi LCD (A)
+* UART GPS NEO-7M-C (B)
+* GY-86 10-DOF IMU Sensor
+* NEXT-204BT Bluetooth dongle
+
