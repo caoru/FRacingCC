@@ -6,7 +6,8 @@ AC_INIT([FRacing], [0.1], [frag@frag.kr])
 AC_CONFIG_SRCDIR([src/main.cpp])
 AC_CONFIG_HEADERS([config.h])
 
-AM_INIT_AUTOMAKE([foreign])
+#AM_INIT_AUTOMAKE([foreign])
+AM_INIT_AUTOMAKE
 
 # Checks for programs.
 AC_PROG_CXX
