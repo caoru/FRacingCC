@@ -15,7 +15,7 @@
 @SET_MAKE@
 
 #
-#  FRacing/src/Makefile.am
+#  FRacing/test/Makefile.am
 #
 #  Copyright (C) 2015 Ikhyun Kim.
 #
@@ -88,8 +88,8 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
-bin_PROGRAMS = fracing$(EXEEXT)
-subdir = src
+bin_PROGRAMS = config_test$(EXEEXT)
+subdir = test
 DIST_COMMON = $(srcdir)/Makefile.in $(srcdir)/Makefile.am \
 	$(top_srcdir)/depcomp
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
@@ -102,17 +102,17 @@ CONFIG_CLEAN_FILES =
 CONFIG_CLEAN_VPATH_FILES =
 am__installdirs = "$(DESTDIR)$(bindir)"
 PROGRAMS = $(bin_PROGRAMS)
-am_fracing_OBJECTS = fracing-main.$(OBJEXT)
-fracing_OBJECTS = $(am_fracing_OBJECTS)
-fracing_DEPENDENCIES =  \
-	$(builddir)/../lib/configuration/libfrconfiguration.la \
-	$(builddir)/../lib/framebuffer/libfrframebuffer.la
+am_config_test_OBJECTS = config_test-config_test.$(OBJEXT)
+config_test_OBJECTS = $(am_config_test_OBJECTS)
+config_test_DEPENDENCIES =  \
+	$(builddir)/../lib/utillity/libfrutillity.la \
+	$(builddir)/../lib/configuration/libfrconfiguration.la
 AM_V_lt = $(am__v_lt_@AM_V@)
 am__v_lt_ = $(am__v_lt_@AM_DEFAULT_V@)
 am__v_lt_0 = --silent
 am__v_lt_1 = 
-fracing_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) \
-	$(LIBTOOLFLAGS) --mode=link $(CXXLD) $(fracing_CXXFLAGS) \
+config_test_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) \
+	$(LIBTOOLFLAGS) --mode=link $(CXXLD) $(config_test_CXXFLAGS) \
 	$(CXXFLAGS) $(AM_LDFLAGS) $(LDFLAGS) -o $@
 AM_V_P = $(am__v_P_@AM_V@)
 am__v_P_ = $(am__v_P_@AM_DEFAULT_V@)
@@ -148,8 +148,8 @@ AM_V_CXXLD = $(am__v_CXXLD_@AM_V@)
 am__v_CXXLD_ = $(am__v_CXXLD_@AM_DEFAULT_V@)
 am__v_CXXLD_0 = @echo "  CXXLD   " $@;
 am__v_CXXLD_1 = 
-SOURCES = $(fracing_SOURCES)
-DIST_SOURCES = $(fracing_SOURCES)
+SOURCES = $(config_test_SOURCES)
+DIST_SOURCES = $(config_test_SOURCES)
 am__can_run_installinfo = \
   case $$AM_UPDATE_INFO_DIR in \
     n|no|NO) false;; \
@@ -294,12 +294,10 @@ target_alias = @target_alias@
 top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
-fracing_SOURCES = main.cpp
-fracing_CXXFLAGS = -I$(top_srcdir)/lib/configuration \
-	-I$(top_srcdir)/lib/framebuffer
-fracing_LDADD =  \
-	$(builddir)/../lib/configuration/libfrconfiguration.la \
-	$(builddir)/../lib/framebuffer/libfrframebuffer.la
+config_test_SOURCES = config_test.cpp
+config_test_CXXFLAGS = -I$(top_srcdir)/lib/configuration
+config_test_LDADD = $(builddir)/../lib/utillity/libfrutillity.la \
+	$(builddir)/../lib/configuration/libfrconfiguration.la
 AM_CFLAGS = -Wall -Werror
 AM_CXXFLAGS = -Wall -Werror
 all: all-am
@@ -315,9 +313,9 @@ $(srcdir)/Makefile.in:  $(srcdir)/Makefile.am  $(am__configure_deps)
 	      exit 1;; \
 	  esac; \
 	done; \
-	echo ' cd $(top_srcdir) && $(AUTOMAKE) --gnu src/Makefile'; \
+	echo ' cd $(top_srcdir) && $(AUTOMAKE) --gnu test/Makefile'; \
 	$(am__cd) $(top_srcdir) && \
-	  $(AUTOMAKE) --gnu src/Makefile
+	  $(AUTOMAKE) --gnu test/Makefile
 .PRECIOUS: Makefile
 Makefile: $(srcdir)/Makefile.in $(top_builddir)/config.status
 	@case '$?' in \
@@ -386,9 +384,9 @@ clean-binPROGRAMS:
 	echo " rm -f" $$list; \
 	rm -f $$list
 
-fracing$(EXEEXT): $(fracing_OBJECTS) $(fracing_DEPENDENCIES) $(EXTRA_fracing_DEPENDENCIES) 
-	@rm -f fracing$(EXEEXT)
-	$(AM_V_CXXLD)$(fracing_LINK) $(fracing_OBJECTS) $(fracing_LDADD) $(LIBS)
+config_test$(EXEEXT): $(config_test_OBJECTS) $(config_test_DEPENDENCIES) $(EXTRA_config_test_DEPENDENCIES) 
+	@rm -f config_test$(EXEEXT)
+	$(AM_V_CXXLD)$(config_test_LINK) $(config_test_OBJECTS) $(config_test_LDADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
@@ -396,7 +394,7 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/fracing-main.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/config_test-config_test.Po@am__quote@
 
 .cpp.o:
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
@@ -419,19 +417,19 @@ distclean-compile:
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LTCXXCOMPILE) -c -o $@ $<
 
-fracing-main.o: main.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(fracing_CXXFLAGS) $(CXXFLAGS) -MT fracing-main.o -MD -MP -MF $(DEPDIR)/fracing-main.Tpo -c -o fracing-main.o `test -f 'main.cpp' || echo '$(srcdir)/'`main.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/fracing-main.Tpo $(DEPDIR)/fracing-main.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='main.cpp' object='fracing-main.o' libtool=no @AMDEPBACKSLASH@
+config_test-config_test.o: config_test.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(config_test_CXXFLAGS) $(CXXFLAGS) -MT config_test-config_test.o -MD -MP -MF $(DEPDIR)/config_test-config_test.Tpo -c -o config_test-config_test.o `test -f 'config_test.cpp' || echo '$(srcdir)/'`config_test.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/config_test-config_test.Tpo $(DEPDIR)/config_test-config_test.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='config_test.cpp' object='config_test-config_test.o' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(fracing_CXXFLAGS) $(CXXFLAGS) -c -o fracing-main.o `test -f 'main.cpp' || echo '$(srcdir)/'`main.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(config_test_CXXFLAGS) $(CXXFLAGS) -c -o config_test-config_test.o `test -f 'config_test.cpp' || echo '$(srcdir)/'`config_test.cpp
 
-fracing-main.obj: main.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(fracing_CXXFLAGS) $(CXXFLAGS) -MT fracing-main.obj -MD -MP -MF $(DEPDIR)/fracing-main.Tpo -c -o fracing-main.obj `if test -f 'main.cpp'; then $(CYGPATH_W) 'main.cpp'; else $(CYGPATH_W) '$(srcdir)/main.cpp'; fi`
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/fracing-main.Tpo $(DEPDIR)/fracing-main.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='main.cpp' object='fracing-main.obj' libtool=no @AMDEPBACKSLASH@
+config_test-config_test.obj: config_test.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(config_test_CXXFLAGS) $(CXXFLAGS) -MT config_test-config_test.obj -MD -MP -MF $(DEPDIR)/config_test-config_test.Tpo -c -o config_test-config_test.obj `if test -f 'config_test.cpp'; then $(CYGPATH_W) 'config_test.cpp'; else $(CYGPATH_W) '$(srcdir)/config_test.cpp'; fi`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/config_test-config_test.Tpo $(DEPDIR)/config_test-config_test.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='config_test.cpp' object='config_test-config_test.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(fracing_CXXFLAGS) $(CXXFLAGS) -c -o fracing-main.obj `if test -f 'main.cpp'; then $(CYGPATH_W) 'main.cpp'; else $(CYGPATH_W) '$(srcdir)/main.cpp'; fi`
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(config_test_CXXFLAGS) $(CXXFLAGS) -c -o config_test-config_test.obj `if test -f 'config_test.cpp'; then $(CYGPATH_W) 'config_test.cpp'; else $(CYGPATH_W) '$(srcdir)/config_test.cpp'; fi`
 
 mostlyclean-libtool:
 	-rm -f *.lo

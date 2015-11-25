@@ -14,14 +14,27 @@
 
 #include <string>
 
+#include <ConfigSection.h>
+
 class Configuration
 {
 public:
 	Configuration(void);
+	Configuration(std::string file_name);
 	~Configuration(void);
 
+	void file_name(std::string file_name);
+	void file_name(char *file_name);
+	std::string& file_name(void);
+
+	bool parse(void);
+	void add(std::string section_name, std::string key, std::string value);
+
+	void dump(void);
+
 private:
-	std::string filename_;
+	std::string file_name_;
+	std::list<ConfigSection> sections_;
 };
 
 #endif /* _CONFIGURATION_H_ */

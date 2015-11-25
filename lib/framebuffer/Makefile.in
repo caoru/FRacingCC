@@ -317,6 +317,8 @@ top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 lib_LTLIBRARIES = libfrframebuffer.la
 libfrframebuffer_la_SOURCES = FrameBuffer.cpp
+AM_CFLAGS = -Wall -Werror
+AM_CXXFLAGS = -Wall -Werror
 all: all-am
 
 .SUFFIXES:

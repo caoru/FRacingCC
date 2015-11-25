@@ -1,5 +1,5 @@
 #
-#  FRacing/lib/fb/Makefile.am
+#  FRacing/lib/utillity/Makefile.am
 #
 #  Copyright (C) 2015 Ikhyun Kim.
 #
@@ -8,8 +8,8 @@
 #
 #
 
-lib_LTLIBRARIES = libfrframebuffer.la
-libfrframebuffer_la_SOURCES = FrameBuffer.cpp
+lib_LTLIBRARIES = libfrutillity.la
+libfrutillity_la_SOURCES = frstring.cpp
 
 AM_CFLAGS=-Wall -Werror
 AM_CXXFLAGS=-Wall -Werror

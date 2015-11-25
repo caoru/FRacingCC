@@ -129,12 +129,19 @@ am__uninstall_files_from_dir = { \
 am__installdirs = "$(DESTDIR)$(libdir)"
 LTLIBRARIES = $(lib_LTLIBRARIES)
 libfrconfiguration_la_LIBADD =
-am_libfrconfiguration_la_OBJECTS = Configuration.lo
+am_libfrconfiguration_la_OBJECTS =  \
+	libfrconfiguration_la-ConfigItem.lo \
+	libfrconfiguration_la-ConfigSection.lo \
+	libfrconfiguration_la-Configuration.lo
 libfrconfiguration_la_OBJECTS = $(am_libfrconfiguration_la_OBJECTS)
 AM_V_lt = $(am__v_lt_@AM_V@)
 am__v_lt_ = $(am__v_lt_@AM_DEFAULT_V@)
 am__v_lt_0 = --silent
 am__v_lt_1 = 
+libfrconfiguration_la_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CXX \
+	$(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=link $(CXXLD) \
+	$(libfrconfiguration_la_CXXFLAGS) $(CXXFLAGS) $(AM_LDFLAGS) \
+	$(LDFLAGS) -o $@
 AM_V_P = $(am__v_P_@AM_V@)
 am__v_P_ = $(am__v_P_@AM_DEFAULT_V@)
 am__v_P_0 = false
@@ -316,7 +323,10 @@ top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 lib_LTLIBRARIES = libfrconfiguration.la
-libfrconfiguration_la_SOURCES = Configuration.cpp
+libfrconfiguration_la_CXXFLAGS = -I$(top_srcdir)/lib/utillity
+libfrconfiguration_la_SOURCES = ConfigItem.cpp ConfigSection.cpp Configuration.cpp
+AM_CFLAGS = -Wall -Werror
+AM_CXXFLAGS = -Wall -Werror
 all: all-am
 
 .SUFFIXES:
@@ -388,7 +398,7 @@ clean-libLTLIBRARIES:
 	}
 
 libfrconfiguration.la: $(libfrconfiguration_la_OBJECTS) $(libfrconfiguration_la_DEPENDENCIES) $(EXTRA_libfrconfiguration_la_DEPENDENCIES) 
-	$(AM_V_CXXLD)$(CXXLINK) -rpath $(libdir) $(libfrconfiguration_la_OBJECTS) $(libfrconfiguration_la_LIBADD) $(LIBS)
+	$(AM_V_CXXLD)$(libfrconfiguration_la_LINK) -rpath $(libdir) $(libfrconfiguration_la_OBJECTS) $(libfrconfiguration_la_LIBADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
@@ -396,7 +406,9 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/Configuration.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libfrconfiguration_la-ConfigItem.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libfrconfiguration_la-ConfigSection.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libfrconfiguration_la-Configuration.Plo@am__quote@
 
 .cpp.o:
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
@@ -418,6 +430,27 @@ distclean-compile:
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='$<' object='$@' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LTCXXCOMPILE) -c -o $@ $<
+
+libfrconfiguration_la-ConfigItem.lo: ConfigItem.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libfrconfiguration_la_CXXFLAGS) $(CXXFLAGS) -MT libfrconfiguration_la-ConfigItem.lo -MD -MP -MF $(DEPDIR)/libfrconfiguration_la-ConfigItem.Tpo -c -o libfrconfiguration_la-ConfigItem.lo `test -f 'ConfigItem.cpp' || echo '$(srcdir)/'`ConfigItem.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libfrconfiguration_la-ConfigItem.Tpo $(DEPDIR)/libfrconfiguration_la-ConfigItem.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='ConfigItem.cpp' object='libfrconfiguration_la-ConfigItem.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libfrconfiguration_la_CXXFLAGS) $(CXXFLAGS) -c -o libfrconfiguration_la-ConfigItem.lo `test -f 'ConfigItem.cpp' || echo '$(srcdir)/'`ConfigItem.cpp
+
+libfrconfiguration_la-ConfigSection.lo: ConfigSection.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libfrconfiguration_la_CXXFLAGS) $(CXXFLAGS) -MT libfrconfiguration_la-ConfigSection.lo -MD -MP -MF $(DEPDIR)/libfrconfiguration_la-ConfigSection.Tpo -c -o libfrconfiguration_la-ConfigSection.lo `test -f 'ConfigSection.cpp' || echo '$(srcdir)/'`ConfigSection.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libfrconfiguration_la-ConfigSection.Tpo $(DEPDIR)/libfrconfiguration_la-ConfigSection.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='ConfigSection.cpp' object='libfrconfiguration_la-ConfigSection.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libfrconfiguration_la_CXXFLAGS) $(CXXFLAGS) -c -o libfrconfiguration_la-ConfigSection.lo `test -f 'ConfigSection.cpp' || echo '$(srcdir)/'`ConfigSection.cpp
+
+libfrconfiguration_la-Configuration.lo: Configuration.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libfrconfiguration_la_CXXFLAGS) $(CXXFLAGS) -MT libfrconfiguration_la-Configuration.lo -MD -MP -MF $(DEPDIR)/libfrconfiguration_la-Configuration.Tpo -c -o libfrconfiguration_la-Configuration.lo `test -f 'Configuration.cpp' || echo '$(srcdir)/'`Configuration.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libfrconfiguration_la-Configuration.Tpo $(DEPDIR)/libfrconfiguration_la-Configuration.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='Configuration.cpp' object='libfrconfiguration_la-Configuration.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libfrconfiguration_la_CXXFLAGS) $(CXXFLAGS) -c -o libfrconfiguration_la-Configuration.lo `test -f 'Configuration.cpp' || echo '$(srcdir)/'`Configuration.cpp
 
 mostlyclean-libtool:
 	-rm -f *.lo

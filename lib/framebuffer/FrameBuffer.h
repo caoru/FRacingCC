@@ -1,5 +1,5 @@
-#ifndef _FRAMEBUFFER_H_
-#define _FRAMEBUFFER_H_
+#ifndef _FRAME_BUFFER_H_
+#define _FRAME_BUFFER_H_
 /*
  *  FRacing/lib/framebuffer/FrameBuffer.h
  *
@@ -21,8 +21,8 @@ public:
 	~FrameBuffer(void);
 
 private:
-	std::string fbdevice_;
+	std::string fb_device_;
 };
 
-#endif /* _FRAMEBUFFER_H_ */
+#endif /* _FRAME_BUFFER_H_ */
 

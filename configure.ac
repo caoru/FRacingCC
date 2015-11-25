@@ -24,7 +24,9 @@ AC_PROG_LIBTOOL
 
 AC_CONFIG_FILES([Makefile
                  lib/Makefile
+                 lib/utillity/Makefile
                  lib/configuration/Makefile
                  lib/framebuffer/Makefile
+                 test/Makefile
                  src/Makefile])
 AC_OUTPUT

@@ -29,6 +29,7 @@
 *.out
 *.app
 fracing
+config_test
 
 # http://www.gnu.org/software/automake
 

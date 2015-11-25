@@ -8,5 +8,5 @@
 #
 #
 
-SUBDIRS		= lib src
+SUBDIRS		= lib src test
 

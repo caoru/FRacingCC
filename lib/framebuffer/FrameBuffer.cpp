@@ -10,6 +10,8 @@
  * Frame buffer library interface implementation.
  */
 
+#include "config.h"
+
 #include <FrameBuffer.h>
 
 FrameBuffer::FrameBuffer(void)

@@ -1,5 +1,5 @@
 /*
- *  FRacing/src/main.cpp
+ *  FRacing/test/config_test.cpp
  *
  *  Copyright (C) 2015 Ikhyun Kim.
  *
@@ -7,15 +7,21 @@
  * COPYING for more details.
  *
  *
- * FRacing program for GPS lap timer / data logger.
+ * Test program for Configuration.
  */
 
 #include "config.h"
 
 #include <iostream>
 
+#include <Configuration.h>
+
 int main(int argc, char **argv)
 {
+	Configuration config("frconfig.cfg");
+	config.parse();
+	config.dump();
+
 	return 0;
 }
 

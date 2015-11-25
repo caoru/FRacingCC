@@ -8,5 +8,5 @@
 #
 #
 
-SUBDIRS		= configuration framebuffer
+SUBDIRS		= utillity configuration framebuffer
 
