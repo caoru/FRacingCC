@@ -12,15 +12,23 @@
  * Frame buffer window library interface definitions.
  */
 
+#include "config.h"
+
 #include <string>
 
-class FrameBufferWindow
+#include <FrameBufferDraw.h>
+
+class FrameBufferWindow : public FrameBufferDraw
 {
 public:
 	FrameBufferWindow(void);
 	~FrameBufferWindow(void);
 
+	void name(std::string& name);
+	std::string& name(void);
+
 private:
+	std::string name_;
 };
 
 #endif /* _FRAME_BUFFER_WINDOW_H_ */

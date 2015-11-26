@@ -38,6 +38,11 @@ FrameBuffer::~FrameBuffer(void)
 {
 }
 
+FrameBufferWindow& FrameBuffer::window(void)
+{
+	return window_;
+}
+
 bool FrameBuffer::open(void)
 {
 	if (!open_framebuffer())
@@ -88,7 +93,7 @@ bool FrameBuffer::open_framebuffer(void)
 	memset(fb_buffer_, 0x00, fix_screen_info_.smem_len);
 
 	bytes_per_pixel_ = (var_screen_info_.bits_per_pixel + 7) / 8;
-	line_addr_ = (unsigned char **)malloc(sizeof(__u32) * var_screen_info_.yres_virtual);
+	line_addr_ = (unsigned char **)malloc(sizeof(void *) * var_screen_info_.yres_virtual);
 	addr = 0;
 	for (y = 0; y < var_screen_info_.yres_virtual; y++, addr += fix_screen_info_.line_length)
 	{
@@ -200,4 +205,23 @@ void FrameBuffer::close_console(void)
 	}
 }
 
+void FrameBuffer::create_window(std::string name)
+{
+	FrameBufferBase *src = dynamic_cast<FrameBufferBase *>(this);
+	FrameBufferBase *dst = dynamic_cast<FrameBufferBase *>(&window_);
+
+	*dst = *src;
+
+	window_.name(name);
+}
+
+int FrameBuffer::get_xres(void)
+{
+	return var_screen_info_.xres;
+}
+
+int FrameBuffer::get_yres(void)
+{
+	return var_screen_info_.yres;
+}
 

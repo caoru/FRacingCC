@@ -17,6 +17,7 @@
 
 #include <Singleton.h>
 #include <FrameBufferBase.h>
+#include <FrameBufferWindow.h>
 
 class FrameBuffer : public FrameBufferBase, public Singleton<FrameBuffer>
 {
@@ -26,6 +27,8 @@ public:
 	FrameBuffer(std::string fb_device, std::string console_device);
 	~FrameBuffer(void);
 
+	FrameBufferWindow& window(void);
+
 	bool open(void);
 	bool open_framebuffer(void);
 	bool open_console(void);
@@ -34,7 +37,13 @@ public:
 	void close_framebuffer(void);
 	void close_console(void);
 
+	void create_window(std::string name);
+
+	int get_xres(void);
+	int get_yres(void);
+
 private:
+	FrameBufferWindow window_;
 };
 
 #endif /* _FRAME_BUFFER_H_ */

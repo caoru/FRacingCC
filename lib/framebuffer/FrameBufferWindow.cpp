@@ -22,3 +22,13 @@ FrameBufferWindow::~FrameBufferWindow(void)
 {
 }
 
+void FrameBufferWindow::name(std::string& name)
+{
+	name_ = name;
+}
+
+std::string& FrameBufferWindow::name(void)
+{
+	return name_;
+}
+
