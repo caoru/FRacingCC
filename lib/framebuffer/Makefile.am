@@ -1,5 +1,5 @@
 #
-#  FRacing/lib/fb/Makefile.am
+#  FRacing/lib/framebuffer/Makefile.am
 #
 #  Copyright (C) 2015 Ikhyun Kim.
 #

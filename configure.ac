@@ -34,6 +34,7 @@ AC_CONFIG_FILES([Makefile
                  lib/utillity/Makefile
                  lib/configuration/Makefile
                  lib/framebuffer/Makefile
+                 lib/gps/Makefile
                  test/Makefile
                  src/Makefile])
 AC_OUTPUT

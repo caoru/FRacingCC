@@ -1,5 +1,5 @@
-#ifndef _FRSTRING_H
-#define _FRSTRING_H
+#ifndef _FRSTRING_H_
+#define _FRSTRING_H_
 /*
  *  FRacing/lib/utillity/ftstring.h
  *
@@ -35,5 +35,5 @@ namespace frstring
 	}
 }
 
-#endif /* _FRSTRING_H */
+#endif /* _FRSTRING_H_ */
 

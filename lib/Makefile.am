@@ -8,5 +8,5 @@
 #
 #
 
-SUBDIRS		= utillity configuration framebuffer
+SUBDIRS		= utillity configuration framebuffer gps
 

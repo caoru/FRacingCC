@@ -1,5 +1,5 @@
-#ifndef _SINGLETON_H
-#define _SINGLETON_H
+#ifndef _SINGLETON_H_
+#define _SINGLETON_H_
 /*
  *  FRacing/lib/utillity/Singleton.h
  *
@@ -70,5 +70,5 @@ template <typename T>
 T* Singleton<T>::instance_ = NULL;
 #endif
 
-#endif /* _SINGLETON_H */
+#endif /* _SINGLETON_H_ */
 
