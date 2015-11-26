@@ -12,6 +12,3 @@ lib_LTLIBRARIES = libfrconfiguration.la
 libfrconfiguration_la_CXXFLAGS = -I$(top_srcdir)/lib/utillity
 libfrconfiguration_la_SOURCES = ConfigItem.cpp ConfigSection.cpp Configuration.cpp
 
-AM_CFLAGS=-Wall -Werror
-AM_CXXFLAGS=-Wall -Werror
-

@@ -1,7 +1,7 @@
 #ifndef _FRSTRING_H
 #define _FRSTRING_H
 /*
- *  FRacing/lib/configuration/Configuration.h
+ *  FRacing/lib/utillity/ftstring.h
  *
  *  Copyright (C) 2015 Ikhyun Kim.
  *

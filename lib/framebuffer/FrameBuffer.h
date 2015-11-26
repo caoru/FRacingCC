@@ -13,15 +13,28 @@
  */
 
 #include <string>
+#include <linux/fb.h>
 
-class FrameBuffer
+#include <Singleton.h>
+#include <FrameBufferBase.h>
+
+class FrameBuffer : public FrameBufferBase, public Singleton<FrameBuffer>
 {
+	friend class Singleton<FrameBuffer>;
 public:
 	FrameBuffer(void);
+	FrameBuffer(std::string fb_device, std::string console_device);
 	~FrameBuffer(void);
 
+	bool open(void);
+	bool open_framebuffer(void);
+	bool open_console(void);
+
+	void close(void);
+	void close_framebuffer(void);
+	void close_console(void);
+
 private:
-	std::string fb_device_;
 };
 
 #endif /* _FRAME_BUFFER_H_ */

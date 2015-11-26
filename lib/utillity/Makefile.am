@@ -9,8 +9,5 @@
 #
 
 lib_LTLIBRARIES = libfrutillity.la
-libfrutillity_la_SOURCES = frstring.cpp
-
-AM_CFLAGS=-Wall -Werror
-AM_CXXFLAGS=-Wall -Werror
+libfrutillity_la_SOURCES = frstring.cpp Singleton.cpp
 

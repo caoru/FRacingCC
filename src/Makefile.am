@@ -10,11 +10,10 @@
 
 bin_PROGRAMS = fracing
 fracing_SOURCES = main.cpp
-fracing_CXXFLAGS = -I$(top_srcdir)/lib/configuration
+fracing_CXXFLAGS = -I$(top_srcdir)/lib/utillity
+fracing_CXXFLAGS += -I$(top_srcdir)/lib/configuration
 fracing_CXXFLAGS += -I$(top_srcdir)/lib/framebuffer
-fracing_LDADD = $(builddir)/../lib/configuration/libfrconfiguration.la
+fracing_LDADD = $(builddir)/../lib/utillity/libfrutillity.la
+fracing_LDADD += $(builddir)/../lib/configuration/libfrconfiguration.la
 fracing_LDADD += $(builddir)/../lib/framebuffer/libfrframebuffer.la
-
-AM_CFLAGS=-Wall -Werror
-AM_CXXFLAGS=-Wall -Werror
 

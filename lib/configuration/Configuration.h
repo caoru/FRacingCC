@@ -14,21 +14,27 @@
 
 #include <string>
 
+#include <Singleton.h>
 #include <ConfigSection.h>
 
-class Configuration
+class Configuration : public Singleton<Configuration>
 {
-public:
+	friend class Singleton<Configuration>;
+
+private:
 	Configuration(void);
 	Configuration(std::string file_name);
 	~Configuration(void);
 
+public:
 	void file_name(std::string file_name);
-	void file_name(char *file_name);
+	//void file_name(char *file_name);
 	std::string& file_name(void);
 
 	bool parse(void);
 	void add(std::string section_name, std::string key, std::string value);
+
+	std::string get(std::string section_name, std::string key);
 
 	void dump(void);
 

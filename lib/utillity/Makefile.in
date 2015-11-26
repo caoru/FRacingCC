@@ -129,7 +129,7 @@ am__uninstall_files_from_dir = { \
 am__installdirs = "$(DESTDIR)$(libdir)"
 LTLIBRARIES = $(lib_LTLIBRARIES)
 libfrutillity_la_LIBADD =
-am_libfrutillity_la_OBJECTS = frstring.lo
+am_libfrutillity_la_OBJECTS = frstring.lo Singleton.lo
 libfrutillity_la_OBJECTS = $(am_libfrutillity_la_OBJECTS)
 AM_V_lt = $(am__v_lt_@AM_V@)
 am__v_lt_ = $(am__v_lt_@AM_DEFAULT_V@)
@@ -316,9 +316,7 @@ top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 lib_LTLIBRARIES = libfrutillity.la
-libfrutillity_la_SOURCES = frstring.cpp
-AM_CFLAGS = -Wall -Werror
-AM_CXXFLAGS = -Wall -Werror
+libfrutillity_la_SOURCES = frstring.cpp Singleton.cpp
 all: all-am
 
 .SUFFIXES:
@@ -398,6 +396,7 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/Singleton.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/frstring.Plo@am__quote@
 
 .cpp.o:

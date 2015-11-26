@@ -9,8 +9,6 @@
 #
 
 lib_LTLIBRARIES = libfrframebuffer.la
-libfrframebuffer_la_SOURCES = FrameBuffer.cpp
-
-AM_CFLAGS=-Wall -Werror
-AM_CXXFLAGS=-Wall -Werror
+libfrframebuffer_la_CXXFLAGS = -I$(top_srcdir)/lib/utillity
+libfrframebuffer_la_SOURCES = font_8x8.c font_8x16.c FrameBufferBase.cpp FrameBufferDraw.cpp FrameBufferWindow.cpp FrameBuffer.cpp
 

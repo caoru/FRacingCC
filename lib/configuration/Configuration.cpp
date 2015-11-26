@@ -38,10 +38,12 @@ void Configuration::file_name(std::string file_name)
 	file_name_ = file_name;
 }
 
+#if 0
 void Configuration::file_name(char *file_name)
 {
 	file_name_ = file_name;
 }
+#endif
 
 std::string& Configuration::file_name(void)
 {
@@ -113,6 +115,20 @@ void Configuration::add(std::string section_name, std::string key, std::string v
 	sections_.push_back(section);
 
 	return;
+}
+
+std::string Configuration::get(std::string section_name, std::string key)
+{
+	std::list<ConfigSection>::iterator iter = sections_.begin();
+
+	while (iter != sections_.end())
+	{
+		if (section_name.compare((*iter).section_name()) == 0)
+			return (*iter).get(key);
+		iter++;
+	}
+
+	return std::string("");
 }
 
 void Configuration::dump(void)

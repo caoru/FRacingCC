@@ -88,7 +88,7 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
-bin_PROGRAMS = config_test$(EXEEXT)
+bin_PROGRAMS = config_test$(EXEEXT) fb_test$(EXEEXT)
 subdir = test
 DIST_COMMON = $(srcdir)/Makefile.in $(srcdir)/Makefile.am \
 	$(top_srcdir)/depcomp
@@ -105,7 +105,6 @@ PROGRAMS = $(bin_PROGRAMS)
 am_config_test_OBJECTS = config_test-config_test.$(OBJEXT)
 config_test_OBJECTS = $(am_config_test_OBJECTS)
 config_test_DEPENDENCIES =  \
-	$(builddir)/../lib/utillity/libfrutillity.la \
 	$(builddir)/../lib/configuration/libfrconfiguration.la
 AM_V_lt = $(am__v_lt_@AM_V@)
 am__v_lt_ = $(am__v_lt_@AM_DEFAULT_V@)
@@ -113,6 +112,14 @@ am__v_lt_0 = --silent
 am__v_lt_1 = 
 config_test_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CXXLD) $(config_test_CXXFLAGS) \
+	$(CXXFLAGS) $(AM_LDFLAGS) $(LDFLAGS) -o $@
+am_fb_test_OBJECTS = fb_test-fb_test.$(OBJEXT)
+fb_test_OBJECTS = $(am_fb_test_OBJECTS)
+fb_test_DEPENDENCIES =  \
+	$(builddir)/../lib/configuration/libfrconfiguration.la \
+	$(builddir)/../lib/framebuffer/libfrframebuffer.la
+fb_test_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) \
+	$(LIBTOOLFLAGS) --mode=link $(CXXLD) $(fb_test_CXXFLAGS) \
 	$(CXXFLAGS) $(AM_LDFLAGS) $(LDFLAGS) -o $@
 AM_V_P = $(am__v_P_@AM_V@)
 am__v_P_ = $(am__v_P_@AM_DEFAULT_V@)
@@ -148,8 +155,8 @@ AM_V_CXXLD = $(am__v_CXXLD_@AM_V@)
 am__v_CXXLD_ = $(am__v_CXXLD_@AM_DEFAULT_V@)
 am__v_CXXLD_0 = @echo "  CXXLD   " $@;
 am__v_CXXLD_1 = 
-SOURCES = $(config_test_SOURCES)
-DIST_SOURCES = $(config_test_SOURCES)
+SOURCES = $(config_test_SOURCES) $(fb_test_SOURCES)
+DIST_SOURCES = $(config_test_SOURCES) $(fb_test_SOURCES)
 am__can_run_installinfo = \
   case $$AM_UPDATE_INFO_DIR in \
     n|no|NO) false;; \
@@ -295,11 +302,18 @@ top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 config_test_SOURCES = config_test.cpp
-config_test_CXXFLAGS = -I$(top_srcdir)/lib/configuration
-config_test_LDADD = $(builddir)/../lib/utillity/libfrutillity.la \
-	$(builddir)/../lib/configuration/libfrconfiguration.la
-AM_CFLAGS = -Wall -Werror
-AM_CXXFLAGS = -Wall -Werror
+config_test_CXXFLAGS = -I$(top_srcdir)/lib/utillity \
+	-I$(top_srcdir)/lib/configuration
+#config_test_LDADD = $(builddir)/../lib/utillity/libfrutillity.la
+config_test_LDADD = $(builddir)/../lib/configuration/libfrconfiguration.la
+fb_test_SOURCES = fb_test.cpp
+fb_test_CXXFLAGS = -I$(top_srcdir)/lib/utillity \
+	-I$(top_srcdir)/lib/framebuffer \
+	-I$(top_srcdir)/lib/configuration
+#fb_test_LDADD = $(builddir)/../lib/utillity/libfrutillity.la
+fb_test_LDADD =  \
+	$(builddir)/../lib/configuration/libfrconfiguration.la \
+	$(builddir)/../lib/framebuffer/libfrframebuffer.la
 all: all-am
 
 .SUFFIXES:
@@ -388,6 +402,10 @@ config_test$(EXEEXT): $(config_test_OBJECTS) $(config_test_DEPENDENCIES) $(EXTRA
 	@rm -f config_test$(EXEEXT)
 	$(AM_V_CXXLD)$(config_test_LINK) $(config_test_OBJECTS) $(config_test_LDADD) $(LIBS)
 
+fb_test$(EXEEXT): $(fb_test_OBJECTS) $(fb_test_DEPENDENCIES) $(EXTRA_fb_test_DEPENDENCIES) 
+	@rm -f fb_test$(EXEEXT)
+	$(AM_V_CXXLD)$(fb_test_LINK) $(fb_test_OBJECTS) $(fb_test_LDADD) $(LIBS)
+
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
 
@@ -395,6 +413,7 @@ distclean-compile:
 	-rm -f *.tab.c
 
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/config_test-config_test.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/fb_test-fb_test.Po@am__quote@
 
 .cpp.o:
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
@@ -430,6 +449,20 @@ config_test-config_test.obj: config_test.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='config_test.cpp' object='config_test-config_test.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(config_test_CXXFLAGS) $(CXXFLAGS) -c -o config_test-config_test.obj `if test -f 'config_test.cpp'; then $(CYGPATH_W) 'config_test.cpp'; else $(CYGPATH_W) '$(srcdir)/config_test.cpp'; fi`
+
+fb_test-fb_test.o: fb_test.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(fb_test_CXXFLAGS) $(CXXFLAGS) -MT fb_test-fb_test.o -MD -MP -MF $(DEPDIR)/fb_test-fb_test.Tpo -c -o fb_test-fb_test.o `test -f 'fb_test.cpp' || echo '$(srcdir)/'`fb_test.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/fb_test-fb_test.Tpo $(DEPDIR)/fb_test-fb_test.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='fb_test.cpp' object='fb_test-fb_test.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(fb_test_CXXFLAGS) $(CXXFLAGS) -c -o fb_test-fb_test.o `test -f 'fb_test.cpp' || echo '$(srcdir)/'`fb_test.cpp
+
+fb_test-fb_test.obj: fb_test.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(fb_test_CXXFLAGS) $(CXXFLAGS) -MT fb_test-fb_test.obj -MD -MP -MF $(DEPDIR)/fb_test-fb_test.Tpo -c -o fb_test-fb_test.obj `if test -f 'fb_test.cpp'; then $(CYGPATH_W) 'fb_test.cpp'; else $(CYGPATH_W) '$(srcdir)/fb_test.cpp'; fi`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/fb_test-fb_test.Tpo $(DEPDIR)/fb_test-fb_test.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='fb_test.cpp' object='fb_test-fb_test.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(fb_test_CXXFLAGS) $(CXXFLAGS) -c -o fb_test-fb_test.obj `if test -f 'fb_test.cpp'; then $(CYGPATH_W) 'fb_test.cpp'; else $(CYGPATH_W) '$(srcdir)/fb_test.cpp'; fi`
 
 mostlyclean-libtool:
 	-rm -f *.lo

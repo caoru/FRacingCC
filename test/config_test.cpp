@@ -18,9 +18,17 @@
 
 int main(int argc, char **argv)
 {
-	Configuration config("frconfig.cfg");
-	config.parse();
-	config.dump();
+	//Configuration config("frconfig.cfg");
+	//config.parse();
+	//config.dump();
+
+	//Configuration::instance("frconfig.cfg");
+
+	Configuration::instance()->file_name("frconfig.cfg");
+	Configuration::instance()->parse();
+	Configuration::instance()->dump();
+
+	std::cout << "framebuffer:device = " << Configuration::instance()->get("framebuffer", "device") << std::endl;
 
 	return 0;
 }

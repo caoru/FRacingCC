@@ -30,6 +30,7 @@
 *.app
 fracing
 config_test
+fb_test
 
 # http://www.gnu.org/software/automake
 
@@ -47,7 +48,7 @@ libtool
 /autoscan-*.log
 /aclocal.m4
 /compile
-/config.h.in
+/config.h.in~
 /configure
 /configure.scan
 /depcomp

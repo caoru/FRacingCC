@@ -104,7 +104,7 @@ am__installdirs = "$(DESTDIR)$(bindir)"
 PROGRAMS = $(bin_PROGRAMS)
 am_fracing_OBJECTS = fracing-main.$(OBJEXT)
 fracing_OBJECTS = $(am_fracing_OBJECTS)
-fracing_DEPENDENCIES =  \
+fracing_DEPENDENCIES = $(builddir)/../lib/utillity/libfrutillity.la \
 	$(builddir)/../lib/configuration/libfrconfiguration.la \
 	$(builddir)/../lib/framebuffer/libfrframebuffer.la
 AM_V_lt = $(am__v_lt_@AM_V@)
@@ -295,13 +295,12 @@ top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 fracing_SOURCES = main.cpp
-fracing_CXXFLAGS = -I$(top_srcdir)/lib/configuration \
+fracing_CXXFLAGS = -I$(top_srcdir)/lib/utillity \
+	-I$(top_srcdir)/lib/configuration \
 	-I$(top_srcdir)/lib/framebuffer
-fracing_LDADD =  \
+fracing_LDADD = $(builddir)/../lib/utillity/libfrutillity.la \
 	$(builddir)/../lib/configuration/libfrconfiguration.la \
 	$(builddir)/../lib/framebuffer/libfrframebuffer.la
-AM_CFLAGS = -Wall -Werror
-AM_CXXFLAGS = -Wall -Werror
 all: all-am
 
 .SUFFIXES:
