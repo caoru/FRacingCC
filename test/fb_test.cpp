@@ -30,8 +30,6 @@ int main(int argc, char **argv)
 		return 1;
 	}
 
-	FrameBuffer::instance()->fill_rect();
-
 	FrameBuffer::instance()->close();
 
 	return 0;
