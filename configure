@@ -635,6 +635,8 @@ ac_subst_vars='am__EXEEXT_FALSE
 am__EXEEXT_TRUE
 LTLIBOBJS
 LIBOBJS
+LIBTS_LDADD
+LIBTS_CXXFLAGS
 CXXCPP
 CPP
 OTOOL64
@@ -766,6 +768,7 @@ enable_fast_install
 with_gnu_ld
 with_sysroot
 enable_libtool_lock
+with_libts
 '
       ac_precious_vars='build_alias
 host_alias
@@ -1418,6 +1421,8 @@ Optional Packages:
   --with-gnu-ld           assume the C compiler uses GNU ld [default=no]
   --with-sysroot=DIR Search for dependent libraries within DIR
                         (or the compiler's sysroot if not specified).
+  --without-libts         Disable library for touch screen support
+                          [default=yes]
 
 Some influential environment variables:
   CXX         C++ compiler command
@@ -15352,7 +15357,17 @@ ac_compiler_gnu=$ac_cv_c_compiler_gnu
 
 
 # Checks for libraries.
-{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for ts_open in -lts" >&5
+
+# Check whether --with-libts was given.
+if test "${with_libts+set}" = set; then :
+  withval=$with_libts; :
+else
+  with_libts=yes
+fi
+
+
+if test "$with_libts" != "no"; then :
+  { $as_echo "$as_me:${as_lineno-$LINENO}: checking for ts_open in -lts" >&5
 $as_echo_n "checking for ts_open in -lts... " >&6; }
 if ${ac_cv_lib_ts_ts_open+:} false; then :
   $as_echo_n "(cached) " >&6
@@ -15389,26 +15404,36 @@ fi
 { $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_cv_lib_ts_ts_open" >&5
 $as_echo "$ac_cv_lib_ts_ts_open" >&6; }
 if test "x$ac_cv_lib_ts_ts_open" = xyes; then :
-  cat >>confdefs.h <<_ACEOF
-#define HAVE_LIBTS 1
-_ACEOF
-
-  LIBS="-lts $LIBS"
-
+  if test "$with_libts" != "no"; then :
+  ac_fn_c_check_header_mongrel "$LINENO" "tslib.h" "ac_cv_header_tslib_h" "$ac_includes_default"
+if test "x$ac_cv_header_tslib_h" = xyes; then :
+  with_libts=yes
 else
-  as_fn_error $? "ts_open was not fount in libts" "$LINENO" 5
+  with_libts=no
 fi
+
+
+fi
+else
+  with_libts=no
+fi
+
+fi
+
+if test "$with_libts" = "yes"; then
+
+$as_echo "#define HAVE_LIBTS 1" >>confdefs.h
+
+	LIBTS_CXXFLAGS=""
+	LIBTS_LDADD="-lts"
+else
+	LIBTS_CXXFLAGS=""
+	LIBTS_LDADD=""
+fi
+
 
 
 # Checks for header files.
-ac_fn_c_check_header_mongrel "$LINENO" "tslib.h" "ac_cv_header_tslib_h" "$ac_includes_default"
-if test "x$ac_cv_header_tslib_h" = xyes; then :
-
-else
-  as_fn_error $? "tslib.h was not fount in libts" "$LINENO" 5
-fi
-
-
 
 # Checks for typedefs, structures, and compiler characteristics.
 # The cast to long int works around a bug in the HP C Compiler
@@ -15551,7 +15576,6 @@ else
 fi
 
 
-# Checks for library functions.
 
 ac_config_files="$ac_config_files Makefile lib/Makefile lib/utillity/Makefile lib/configuration/Makefile lib/framebuffer/Makefile lib/gps/Makefile test/Makefile src/Makefile"
 

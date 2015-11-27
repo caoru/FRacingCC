@@ -10,3 +10,5 @@
 
 SUBDIRS		= lib src test
 
+AM_CXXFLAGS = $(LIBTS_CXXFLAGS)
+

@@ -242,6 +242,8 @@ LDFLAGS = @LDFLAGS@
 LIBOBJS = @LIBOBJS@
 LIBS = @LIBS@
 LIBTOOL = @LIBTOOL@
+LIBTS_CXXFLAGS = @LIBTS_CXXFLAGS@
+LIBTS_LDADD = @LIBTS_LDADD@
 LIPO = @LIPO@
 LN_S = @LN_S@
 LTLIBOBJS = @LTLIBOBJS@
@@ -322,6 +324,7 @@ top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 SUBDIRS = lib src test
+AM_CXXFLAGS = $(LIBTS_CXXFLAGS)
 all: config.h
 	$(MAKE) $(AM_MAKEFLAGS) all-recursive
 
