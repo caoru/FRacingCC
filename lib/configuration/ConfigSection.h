@@ -12,6 +12,8 @@
  * Configuration section definitions.
  */
 
+#include "config.h"
+
 #include <string>
 #include <list>
 

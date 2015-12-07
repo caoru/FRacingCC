@@ -12,6 +12,8 @@
  * Configuration item definitions.
  */
 
+#include "config.h"
+
 #include <string>
 
 class ConfigItem

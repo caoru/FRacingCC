@@ -12,6 +12,8 @@
  * Configuration library interface definitions.
  */
 
+#include "config.h"
+
 #include <string>
 
 #include <Singleton.h>

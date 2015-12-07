@@ -14,13 +14,31 @@
 
 #include "config.h"
 
+#include <iostream>
+#include <signal.h>
+
 class GPS
 {
 public:
 	GPS(void);
+    GPS(std::string device, std::string baudrate);
 	~GPS(void);
 
+	void device(std::string device);
+	std::string& device(void);
+
+    void baudrate(std::string baudrate);
+
+    bool open(void);
+    void close(void);
+
 private:
+    std::string device_;
+    int fd_;
+    struct termios tio_;
+    std::string baudrate_str_;
+    speed_t baudrate_;
+    struct sigaction saio_;
 
 };
 
